@@ -128,3 +128,28 @@ func wordCheck(a: String, b: String) -> Bool{
 }
 
 print(wordCheck(a: word1, b: word2))
+
+//Now we work with how to return multiple values from a function
+func isUppercase(string: String) -> Bool {
+    string == string.uppercased()
+}
+ // this is how u retunr a single value back
+func getUser() -> (firstName: String, lastName: String){
+    (firstName: "Taylor", lastName: "Swift")
+    // you could also do this ("Taylor", "Swift") swift will know the locations for it automatically
+}
+
+let user = getUser()
+print("Name: \(user.firstName) \(user.lastName)")
+
+
+func printTimesTables(for number: Int) {
+    // for is outside parameter and number is the inside one
+    for i in 1...12 {
+        print("\(i) x \(number) is \(i * number)")
+    }
+}
+
+printTimesTables(for: 5)
+
+
