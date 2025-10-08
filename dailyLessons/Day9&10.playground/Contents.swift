@@ -98,3 +98,93 @@ let solve = { (_:[Int]) in
 }
 
 solve(luckyNumber)
+
+// creating stucts
+
+struct Album{
+    let title: String
+    let artist: String
+    let year: Int
+    
+    func printSummary(){
+        print("\(title) (\(year)) by \(artist)")
+    }
+}
+
+
+// EXC #2
+
+struct Employee{
+    let name: String
+    var vacationRemaining: Int
+    
+    mutating func takeVacation(days: Int){
+        // mutating is need becuase we are changing somehting about the struct, bc all structs make constants
+        if vacationRemaining > days{
+           vacationRemaining -= days
+            print("Im going on Vacation!")
+            print("Days remaining: \(vacationRemaining)")
+        }
+        else{
+            print("Oops! There aren't enough days remaining")
+        }
+    }
+}
+
+var archer = Employee(name: "Sterlng Archer", vacationRemaining: 20)
+archer.takeVacation(days: 5)
+print(archer.vacationRemaining)
+
+//dynamic values in Structs
+struct Employees{
+    let name: String
+    var vacationAllocated = 20
+    var vacationTaken = 0
+    
+    var vacationRemaining: Int{
+        get{
+            vacationAllocated - vacationTaken
+        }
+        set{
+            vacationAllocated = vacationTaken + newValue
+        }
+    }
+}
+        
+var jarcher = Employees(name: "Sterling Archer", vacationAllocated: 20,)
+jarcher.vacationTaken += 4
+jarcher.vacationRemaining = 5
+print(jarcher.vacationAllocated)
+
+struct Game{
+    var score = 0{
+        didSet{
+            print("Score is now \(score)")
+            //udates our score and prints them out
+        }
+    }
+}
+var game = Game()
+game.score += 4
+game.score += 2
+game.score -= 3
+game.score += 6
+
+struct App{
+    var contacts = [String](){
+        willSet{
+            print("Current value is: \(contacts)")
+            print("New value will be: \(newValue)")
+        }
+        
+        didSet{
+            print("There are now \(contacts.count) contacts")
+            print("Old value was: \(oldValue)")
+        }
+    }
+}
+
+var app = App()
+app.contacts.append("Sterling")
+app.contacts.append("Sam")
+app.contacts.append("John")
