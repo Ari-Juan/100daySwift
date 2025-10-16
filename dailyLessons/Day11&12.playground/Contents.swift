@@ -35,7 +35,7 @@ else{
 
 
 struct School{
-    static var studentCount = 0
+    nonisolated(unsafe) static var studentCount = 0
     // static means we can only use these for School Struct
     
     static func add(student: String){
@@ -53,3 +53,39 @@ struct AppData{
     static let saveFilename = "Setting.json"
     static let homeURL = "https://google.com"
 }
+
+
+//check point 6
+
+struct myCar{
+    let model: String
+    let numberSeats: Int
+    var currentGear: Int
+    
+    mutating func gearUp() {
+        if currentGear < 8{
+            currentGear += 1
+        }
+        else{
+            print("Youve reached the maximum amount of gears")
+        }
+    }
+    
+    mutating func gearDown(){
+        if currentGear < 1{
+            print("Minimum gear reached")
+        }
+        else{
+            currentGear -= 1
+        }
+    }
+}
+var leCar = myCar(model: "Volvo S60", numberSeats: 5, currentGear: 1)
+print(leCar.model)
+print(leCar.currentGear)
+print("This car has \(leCar.numberSeats) seats")
+leCar.gearUp()
+leCar.gearUp()
+leCar.gearUp()
+print(leCar.currentGear)
+
