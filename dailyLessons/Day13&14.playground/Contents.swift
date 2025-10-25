@@ -58,3 +58,97 @@ commute(distance: 100, using: car)
 
 let bike = Bicycle()
 commute(distance: 100, using: bike)
+
+// How to use opaque return types
+func getRandomNumber() -> some Equatable {
+    //Int.random(in: 1...6)
+    // some Equatable allows us to edit code later without losing functionality
+    //swift knows what is really being returned but not us
+    Double.random(in: 1...6 )
+}
+
+func getRandomBool() -> some Equatable {
+    Bool.random()
+}
+
+print(getRandomNumber() == getRandomNumber())
+
+//How to create extensions
+// how to create and use protocol extensions
+extension Collection{
+    var isNotEmpty: Bool{
+        isEmpty == false
+    }
+}
+
+let guests = ["Mario", "Luigi", "Yoshi", "Peach"]
+
+if guests.isNotEmpty{
+    print("Guest count: \(guests.count)")
+}
+
+protocol Person{
+    var name: String{get}
+    func sayHello()
+}
+
+extension Person{
+    func sayHello(){
+        print("Hi, Im \(name)")
+    }
+}
+
+struct Employee: Person{
+    let name: String
+}
+let taylor = Employee(name: "Taylor Swift")
+taylor.sayHello()
+
+// Check point 8
+
+// Protocol for building
+protocol Building{
+    var propertyType: String {get set}
+    var sellerName: String {get set}
+    var totalRooms: Int {get set}
+    var cost: Int {get set}
+    func summary()
+}
+
+extension Building{
+    func summary(){
+        print("""
+            /// SUMMARY ///
+            Building Type: \(propertyType)
+            Number of Rooms: \(totalRooms)
+            Cost of Property: \(cost)
+            Agent: \(sellerName)
+            """)
+    }
+}
+
+struct House: Building{
+    var propertyType: String
+    var totalRooms: Int
+    var cost: Int
+    var sellerName: String
+}
+
+struct Office: Building{
+    var propertyType: String
+    var totalRooms: Int
+    var cost: Int
+    var sellerName: String
+}
+
+var house1 = House(propertyType: "Mid Century Modern", totalRooms: 8, cost: 750000, sellerName: "Sally Agents")
+var office1 = Office(propertyType: "High Ceiling", totalRooms: 12, cost: 1200000, sellerName: "John Agents")
+
+house1.summary()
+office1.summary()
+// How many room
+//cost of property in INt
+//Name of estate agent selling
+//method for printing the sales summary
+
+//TWO structs House and Office
