@@ -152,3 +152,76 @@ office1.summary()
 //method for printing the sales summary
 
 //TWO structs House and Office
+
+
+//Day 14
+// How to handle missing data with optionals
+
+let opposites = ["Mario": "Wario", "Luigi": "Waluigi"]
+let peachOpposites = opposites["Peach"]
+
+if let marioOpposite = opposites["Mario"]{
+    //if let will unwrape the data to see if it has a value
+    // if it foes it will assign it to the let variable
+    print("Mario opposite is \(marioOpposite)")
+}
+
+var username: String? = nil
+
+if let unwrappedUsername = username{
+    print("We got a user: \(unwrappedUsername)")
+}else{
+    print("The optional was emtpy")
+}
+
+#imageLiteral(resourceName: "Screenshot 2025-10-27 at 2.34.13 PM.jpg")
+
+func square(number: Int)-> Int{
+    number * number
+}
+
+var number: Int? = nil
+
+if let number = number{
+   print(square(number: number))
+    // the number here next to let is only for this opional
+    // wont work anywhere else in the code
+    
+}
+
+// How to unwrap optionaals with gaurd
+
+func printSqaure(of number: Int?){
+    guard let number = number else{
+        // guard let will only run if the optionals does not
+        // have a value
+        print("Missing input")
+        return
+    }
+    
+    print("\(number) x \(number) is \(number * number)")
+}
+
+// How to unwrap optionals with nil coalescing
+let captains = [
+    "Enterprise": "Picard",
+    "Voyager": "Paris",
+    "Discovery": "Soneva",
+    "Defiant": "Crusher"
+]
+let new = captains["Serenity"] ?? "N/A"
+// let new = captains["Serenity", default: "N/A"
+//is also another way to write it
+// ?? means that if no value is returned N/A will be saved to new
+
+let tvShows = ["Game of Thrones", "Rick and Morty", "The Mandalorian"]
+let favorite = tvShows.randomElement() ?? "None"
+
+struct Book{
+    let title: String
+    let authors: String?
+}
+
+let book = Book(title: "Beowulf", authors: nil)
+let authors = book.authors ?? "Unknown"
+print(authors)
